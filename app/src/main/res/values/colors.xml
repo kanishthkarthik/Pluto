@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#FF5722</color>
+    <color name="darkColor">#E64A19</color>
+    <color name="fontCol">#03A9F4</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="off_white">#fff8f8f8</color>
+    <color name="grey">#f0f0f0</color>
+    <color name="accent">#03A9F4</color>
+
+    <color name="body_text_1">#9d000000</color>
+    <color name="body_text_2">#8a000000</color>
+    <color name="body_text_3">#60000000</color>
+    <color name="body_text_2_inverse">#8abcbcbc</color>
+
+
+</resources>
