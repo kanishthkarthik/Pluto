@@ -27,19 +27,8 @@ public class GetAd {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                //Default dates
-                Calendar calendar = Calendar.getInstance();
 
-                String year = calendar.get(Calendar.YEAR) + "";
-                String month = (calendar.get(Calendar.MONTH) > 9) ? "" : "0";
-                month += calendar.get(Calendar.MONTH);
-                String day = (calendar.get(Calendar.DAY_OF_MONTH) > 9) ? "" : "0";
-                day += calendar.get(Calendar.DAY_OF_MONTH);
-
-                String date = year + "-" + month + "-" + day;
-                String data = CommonResources.appId+apiName+"2015-09-14";
-
-                //Log.d("****", data);
+                String data = CommonResources.appId+apiName+CommonResources.date;
 
                 String hmac = "";
 

@@ -49,12 +49,29 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
         finish();
 
-        //GetToken.postMethod();
+
     }
     private void getTags()
     {
-        String keyList[] = {"guitar","run","fit" ,"photo","cam"};
-        int contentId[] = {148,53,53,201,201};
+        String keyList[] = {"guitar","keyboard","drum",
+                "run","fit" ,
+                "photoshop",
+                "job","naukri",
+                "cars",
+                "99acers","housing","common floor",
+                "pet",
+                "vtu","coursera",
+                "verge"};
+        int contentId[] = {148,148,148, //musical instruments
+                53,53, //fitness
+                201, //camera
+                272,272, //jobs
+                71, //cars
+                32,32,32, //housing
+                152,   //pet care
+                255,255, //study materials
+                147}; //tech
+
         int keyCount[] = new int[keyList.length];
         String tagList[] = new String[keyList.length];
         for(int kC: keyCount) { kC = 0; }

@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.quikr.pluto.Backend.ReturningClass;
+
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -40,17 +44,37 @@ public class SplashScreen extends ActionBarActivity {
             @Override
             public void run() {
 
-                Intent intent;
-                //if(login)
-                intent = new Intent(SplashScreen.this, MainActivity.class);
-                //else
-                //  intent = new Intent(SplashScreen.this, LoginActivity.class);
+                Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+
+                //Default dates
+                Calendar calendar = Calendar.getInstance();
+
+                String year = calendar.get(Calendar.YEAR) + "";
+                String month = ((calendar.get(Calendar.MONTH)+1) > 9) ? "" : "0";
+                month += (calendar.get(Calendar.MONTH)+1);
+                String day = (calendar.get(Calendar.DAY_OF_MONTH) > 9) ? "" : "0";
+                day += calendar.get(Calendar.DAY_OF_MONTH);
+                String date = year + "-" + month + "-" + day;
+
+                Log.d("*****",date);
+
+                CommonResources.date=date;
+
+
+                if(!ReturningClass.getDate(getApplicationContext()).equalsIgnoreCase(CommonResources.date))
+                    GetToken.postMethod(getApplicationContext());
+
+                //Token and ID generated
+                //Set token ID and token
+                CommonResources.token = ReturningClass.getToken(getApplicationContext());
+                CommonResources.tokenId = ReturningClass.getTokenID(getApplicationContext());
+
 
                 startActivity(intent);
                 finish();
 
             }
-        }, 800); //800 is the wait time to show next activity (That is, 0.8seconds)
+        }, 400); //800 is the wait time to show next activity (That is, 0.4seconds)
     }
 
 }

@@ -1,6 +1,9 @@
 package com.quikr.pluto;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.quikr.pluto.Backend.ReturningClass;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -17,23 +20,12 @@ import java.util.Calendar;
  */
 public class GetToken
 {
-    public static void postMethod()
+    public static void postMethod(final Context context)
     {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
 
-                /*//Default dates
-                Calendar calendar = Calendar.getInstance();
-
-                String year = calendar.get(Calendar.YEAR) + "";
-                String month = (calendar.get(Calendar.MONTH) > 9) ? "" : "0";
-                month += calendar.get(Calendar.MONTH);
-                String day = (calendar.get(Calendar.DAY_OF_MONTH) > 9) ? "" : "0";
-                day += calendar.get(Calendar.DAY_OF_MONTH);
-
-                String date = year + "-" + month + "-" + day;
-                */
                 String data = "kanishthkarthik@gmail.com"+CommonResources.appId+CommonResources.date;
 
                 String hmac = "";
@@ -54,13 +46,22 @@ public class GetToken
 
                     StringEntity params = new StringEntity(jsonObject.toString());
 
+                    Log.d("****",data);
                     Log.d("**jsonObject",jsonObject.toString());
 
                     post.addHeader("content-type","application/json");
                     post.setEntity(params);
                     HttpResponse response = httpClient.execute(post);
                     String r1 = EntityUtils.toString(response.getEntity());
-                    Log.d("**response**",r1);
+                    Log.d("**response**", r1);
+
+                    JSONObject jsonResponse = new JSONObject(r1);
+                    String token = jsonResponse.getString("token");
+                    String tokenId = jsonResponse.getString("tokenId");
+
+                    ReturningClass.setToken(context, token);
+                    ReturningClass.setTokenID(context, tokenId);
+                    ReturningClass.setTokenDate(context ,CommonResources.date);
 
                     // handle response here...
                 } catch (Exception ex) {
